@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CursProject</string>
+    <string name="past">Past</string>
+    <string name="today">Today</string>
+    <string name="soon">Soon</string>
+    <string name="add">add</string>
+</resources>
