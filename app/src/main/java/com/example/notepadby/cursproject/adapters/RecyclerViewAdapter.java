@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.notepadby.cursproject.DetailView;
-import com.example.notepadby.cursproject.MainActivity;
+import com.example.notepadby.cursproject.DetailsActivity;
 import com.example.notepadby.cursproject.R;
+import com.example.notepadby.cursproject.constants.Constants;
 import com.example.notepadby.cursproject.entity.ListElement;
 
 import java.util.List;
@@ -42,16 +42,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         title.setText(element.getTitle());
         date.setText(element.getDate().toString());
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DetailView.class);
-                MainActivity.currentList = elements;
+        itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), DetailsActivity.class);
 
-                intent.putExtra("id", element.getId());
-
-                view.getContext().startActivity(intent);
-            }
+            intent.putExtra(Constants.INTENT_ID, element.getId());
+            view.getContext().startActivity(intent);
         });
 
     }
