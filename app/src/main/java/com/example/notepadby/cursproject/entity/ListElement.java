@@ -1,13 +1,12 @@
 package com.example.notepadby.cursproject.entity;
 
+import android.support.annotation.NonNull;
+
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * Created by NotePad.by on 06.12.2017.
- */
 
-public class ListElement {
+public class ListElement implements Comparable {
     private int id;
     private String title;
     private String description;
@@ -40,5 +39,10 @@ public class ListElement {
         this.title = title;
         this.description = description;
         this.date = date;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return (int) (((ListElement) o).getDate().getTime() - this.getDate().getTime());
     }
 }
