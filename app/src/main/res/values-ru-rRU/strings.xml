@@ -5,4 +5,8 @@
     <string name="today">Сегодня</string>
     <string name="soon">Скоро</string>
     <string name="add">Добавить</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
+    <string name="time">Время</string>
+    <string name="date">Дата</string>
 </resources>

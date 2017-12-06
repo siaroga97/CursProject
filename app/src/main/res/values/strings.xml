@@ -4,4 +4,8 @@
     <string name="today">Today</string>
     <string name="soon">Soon</string>
     <string name="add">add</string>
+    <string name="title">title</string>
+    <string name="description">description</string>
+    <string name="time">time</string>
+    <string name="date">date</string>
 </resources>

@@ -2,8 +2,15 @@ package com.example.notepadby.cursproject;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.notepadby.cursproject.constants.Constants;
+import com.example.notepadby.cursproject.entity.ListElement;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class DetailView extends Activity {
@@ -15,14 +22,12 @@ public class DetailView extends Activity {
         TextView descriptionView = findViewById(R.id.detailDescription);
         TextView dateView = findViewById(R.id.detailDate);
 
-        String title = getIntent().getStringExtra("title");
+        Integer id = getIntent().getIntExtra("id", 0);
+        ListElement element = MainActivity.currentList.get(id);
 
-         String description = getIntent().getStringExtra("description");
-          String date = getIntent().getStringExtra("date");
-        titleView.setText(title);
-          descriptionView.setText(description);
-          dateView.setText(date);
-
+        titleView.setText(element.getTitle());
+        descriptionView.setText(element.getDescription());
+        dateView.setText(element.getDate().toString());
 
 
     }
