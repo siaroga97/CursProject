@@ -1,5 +1,6 @@
 package com.example.notepadby.cursproject.fragments;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,19 +8,20 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.notepadby.cursproject.CreateActivity;
 import com.example.notepadby.cursproject.R;
 import com.example.notepadby.cursproject.adapters.RecyclerViewAdapter;
+import com.example.notepadby.cursproject.constants.Constants;
+import com.example.notepadby.cursproject.constants.ListOperations;
 import com.example.notepadby.cursproject.entity.ListElement;
 
 import java.util.List;
 
-/**
- * Created by NotePad.by on 06.12.2017.
- */
 
 public class RecyclerViewFragment extends Fragment {
 
@@ -43,9 +45,18 @@ public class RecyclerViewFragment extends Fragment {
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mAddButton = view.findViewById(R.id.fab_add);
+        mAddButton.setOnClickListener(listener -> {
+            Intent intent = new Intent(getContext(), CreateActivity.class);
+
+            startActivityForResult(intent, Constants.REQUEST_CODE_LIST_UPDATED);
+        });
 
         new LoadContent().execute();
         return view;
+    }
+
+    public void changeData(){
+        mAdapter.notifyDataSetChanged();
     }
 
     class LoadContent extends AsyncTask<Void, Void, Void> {
