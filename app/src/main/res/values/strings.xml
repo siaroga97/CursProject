@@ -8,4 +8,9 @@
     <string name="description">description</string>
     <string name="time">time</string>
     <string name="date">date</string>
+
+    <string name="incorrect_input">Incorrect input</string>
+    <string name="ad_created">Ad was successfully created!</string>
+    <string name="ad_created_callback">Ad was created, update required!</string>
+    <string name="lists_updated">Lists were updated!</string>
 </resources>

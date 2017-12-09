@@ -14,11 +14,10 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
-        
-        <activity android:name=".DetailView"></activity>
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".CreateActivity"></activity>
     </application>
 
 </manifest>

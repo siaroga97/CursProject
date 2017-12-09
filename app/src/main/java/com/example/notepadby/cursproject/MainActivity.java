@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public List<String> tabTitles;
     public List<RecyclerViewFragment> fragments;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

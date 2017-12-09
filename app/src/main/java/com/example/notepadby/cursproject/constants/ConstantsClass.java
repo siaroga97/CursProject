@@ -4,9 +4,7 @@ import com.example.notepadby.cursproject.entity.ListElement;
 
 import java.util.Date;
 
-/**
- * Created by NotePad.by on 06.12.2017.
- */
+
 
 public class ConstantsClass implements Constants {
     public static void addElements(){

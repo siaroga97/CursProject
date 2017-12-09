@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import com.example.notepadby.cursproject.CreateActivity;
 import com.example.notepadby.cursproject.R;
 import com.example.notepadby.cursproject.adapters.RecyclerViewAdapter;
 import com.example.notepadby.cursproject.constants.Constants;
-import com.example.notepadby.cursproject.constants.ListOperations;
+
 import com.example.notepadby.cursproject.entity.ListElement;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class RecyclerViewFragment extends Fragment {
         return view;
     }
 
-    public void changeData(){
+    public void changeData() {
         mAdapter.notifyDataSetChanged();
     }
 
