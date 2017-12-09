@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-public class DetailView extends Activity {
+public class DetailsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,13 +22,11 @@ public class DetailView extends Activity {
         TextView descriptionView = findViewById(R.id.detailDescription);
         TextView dateView = findViewById(R.id.detailDate);
 
-        Integer id = getIntent().getIntExtra("id", 0);
-        ListElement element = MainActivity.currentList.get(id);
+        Integer id = getIntent().getIntExtra(Constants.INTENT_ID, 0);
+        ListElement element = Constants.globalList.get(id);
 
         titleView.setText(element.getTitle());
         descriptionView.setText(element.getDescription());
         dateView.setText(element.getDate().toString());
-
-
     }
 }
