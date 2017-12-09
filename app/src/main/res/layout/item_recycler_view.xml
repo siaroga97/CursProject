@@ -14,14 +14,14 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/item_date"
-        android:text="29 december 2017 15-49"
-        android:textSize="16sp"
-        android:textColor="#000000"
-        android:paddingLeft="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+  <TextView
+      android:id="@+id/item_date"
+      android:text="29 december 2017 15-49"
+      android:textSize="16sp"
+      android:textColor="#000000"
+      android:paddingLeft="16dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
   <View
       android:layout_width="match_parent"
