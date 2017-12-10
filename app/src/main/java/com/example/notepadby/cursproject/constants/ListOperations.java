@@ -8,7 +8,6 @@ import android.util.Log;
 import com.example.notepadby.cursproject.entity.ListElement;
 
 import java.util.Date;
-import java.util.List;
 import java.util.function.Predicate;
 
 
