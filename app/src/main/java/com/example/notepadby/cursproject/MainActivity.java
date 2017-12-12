@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private FragmentManager mFragmentManager;
-   //
     private EventDbHelper eventDbHelper;
 
     public List<String> tabTitles;
@@ -48,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //
         eventDbHelper = new EventDbHelper(this);
-        //
 
         ListOperations.addTestElements(eventDbHelper);
         ListOperations.updateLists();

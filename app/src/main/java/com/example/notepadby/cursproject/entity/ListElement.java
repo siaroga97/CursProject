@@ -12,6 +12,9 @@ public class ListElement implements Comparable {
     private String description;
     private Date date;
 
+    public ListElement(){
+
+    }
     public int getId() {
         return id;
     }
