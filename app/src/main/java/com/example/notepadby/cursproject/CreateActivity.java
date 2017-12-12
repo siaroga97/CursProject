@@ -85,7 +85,6 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
     public void onTimePicked(Calendar time) {
         mHour = time.get(Calendar.HOUR_OF_DAY);
         mMinute = time.get(Calendar.MINUTE);
-
         updateDisplay();
     }
 
@@ -93,7 +92,6 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
         mYear = date.get(Calendar.YEAR);
         mMonth = date.get(Calendar.MONTH) + 1;
         mDay = date.get(Calendar.DAY_OF_MONTH);
-
         updateDisplay();
     }
 
@@ -127,6 +125,6 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
     }
 
     private void createAd(List<ListElement> list, Date date, String title, String description) {
-        ListOperations.insertElement(new ListElement(list.size(), title, description, date));
+        ListOperations.insertElement(new ListElement(list.size()+1, title, description, date));
     }
 }
