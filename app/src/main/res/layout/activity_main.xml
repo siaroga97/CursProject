@@ -14,9 +14,9 @@
             android:id="@+id/tab_layout"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            android:background="#95f57d"
-            app:tabTextColor="#FFFFFF"
-            app:tabSelectedTextColor="#FF0000"
+            android:background="#877df5"
+            app:tabTextColor="#000000"
+            app:tabSelectedTextColor="#00ffd9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -28,11 +28,5 @@
             android:id="@+id/view_pager"
             />
     </RelativeLayout>
-    <!--<FrameLayout-->
-    <!--android:id="@+id/main_fragment_container"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-    <!---->
-    <!--</FrameLayout>-->
 
 </RelativeLayout>

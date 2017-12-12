@@ -1,8 +1,6 @@
 package com.example.notepadby.cursproject;
 
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public List<String> tabTitles;
     public List<RecyclerViewFragment> fragments;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -38,11 +37,12 @@ public class MainActivity extends AppCompatActivity {
             case Constants.REQUEST_CODE_LIST_UPDATED:
                 Log.i(Constants.APP_LOGS, getString(R.string.ad_created_callback));
                 ListOperations.updateLists();
-                fragments.forEach(RecyclerViewFragment::changeData);
+                for(RecyclerViewFragment fragment: fragments){
+                    fragment.changeData();
+                }
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragments = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            fragments.add(new RecyclerViewFragment()); // Them'll be replaced in 2 ms
+            fragments.add(new RecyclerViewFragment());
         }
         tabTitles = new ArrayList<>();
         tabTitles.add(getString(R.string.past));

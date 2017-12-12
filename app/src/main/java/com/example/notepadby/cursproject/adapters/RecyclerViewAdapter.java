@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView date = viewHolder.date;
 
         title.setText(element.getTitle());
-        date.setText(element.getDate().toString());
+        date.setText(android.text.format.DateFormat.format("EEE. dd  MMMM yyyy HH:mm",element.getDate()));
         itemView.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), DetailsActivity.class);
 
@@ -59,7 +59,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
         private TextView date;
-
         private View itemView;
 
         public ItemViewHolder(View itemView) {

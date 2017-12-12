@@ -3,7 +3,7 @@ package com.example.notepadby.cursproject.entity;
 import android.support.annotation.NonNull;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 
 public class ListElement implements Comparable {
@@ -11,7 +11,6 @@ public class ListElement implements Comparable {
     private String title;
     private String description;
     private Date date;
-    private GregorianCalendar dateEvent;
 
     public int getId() {
         return id;
@@ -25,9 +24,7 @@ public class ListElement implements Comparable {
         return description;
     }
 
-    public GregorianCalendar getDateEvent() {
-        return dateEvent;
-    }
+
 
     public Date getDate() {
         return date;

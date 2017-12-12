@@ -1,7 +1,10 @@
 package com.example.notepadby.cursproject;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,14 +16,25 @@ import com.example.notepadby.cursproject.constants.Constants;
 import com.example.notepadby.cursproject.constants.ListOperations;
 import com.example.notepadby.cursproject.entity.ListElement;
 
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-public class CreateActivity extends AppCompatActivity {
+public class CreateActivity extends AppCompatActivity implements TimePickerFragment.TimePickedListener,DatePickerFragment.DatePickedListener{
 
     private Date addedDate;
     private String title;
     private String description;
+
+
+    private int mHour;
+    private int mMinute;
+
+    private int mYear;
+    private int mMonth;
+    private int mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +42,25 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
 
         TextView createDate = findViewById(R.id.create_date);
+        TextView createTime = findViewById(R.id.create_time);
         EditText titleView = findViewById(R.id.create_title);
         EditText descriptionView = findViewById(R.id.create_description);
         FloatingActionButton addButton = findViewById(R.id.create_button);
-
-        createDate.setOnClickListener(listener -> {
-            addedDate = new Date();
-            createDate.setText(addedDate.toString());
+        createTime.setOnClickListener(listener -> {
+            DialogFragment timeFragment = new TimePickerFragment();
+            timeFragment.show(getSupportFragmentManager(), "timePicker");
         });
+        createDate.setOnClickListener(listener -> {
+            DialogFragment dateFragment = new DatePickerFragment();
+            dateFragment.show(getSupportFragmentManager(), "datePicker");
+        });
+
 
         addButton.setOnClickListener(listener -> {
             title = titleView.getText().toString();
             description = descriptionView.getText().toString();
-
-            String result = checkAd(addedDate, title, description);
+            GregorianCalendar calendar=new GregorianCalendar(mYear-1,mMonth-1,mDay,mHour,mMinute);
+            String result = checkAd(calendar.getTime(), title, description);
             Toast.makeText(CreateActivity.this, result, Toast.LENGTH_SHORT)
                     .show();
             if (result.equals(getString(R.string.ad_created))) {
@@ -50,6 +69,39 @@ public class CreateActivity extends AppCompatActivity {
                 new Handler().postDelayed(this::finish, 1000);
             }
         });
+    }
+
+    public void onTimePicked(Calendar time) {
+        mHour = time.get(Calendar.HOUR_OF_DAY);
+        mMinute = time.get(Calendar.MINUTE);
+
+        updateDisplay();
+    }
+    public void onDatePicked(Calendar date) {
+        mYear = date.get(Calendar.YEAR);
+        mMonth = date.get(Calendar.MONTH) + 1;
+        mDay = date.get(Calendar.DAY_OF_MONTH);
+
+        updateDisplay();
+    }
+    private static String pad(int c) {
+        if (c >= 10)
+            return String.valueOf(c);
+        else
+            return "0" + String.valueOf(c);
+    }
+    public void updateDisplay() {
+        if (mHour!=0 && mMinute != 0 ) {
+            TextView createDate = findViewById(R.id.create_time);
+            createDate.setText(new StringBuilder().append(pad(mHour)).append(":")
+                    .append(pad(mMinute)));
+        }
+        if (mDay!=0 && mMonth !=0 && mYear!=0) {
+            TextView creatime = findViewById(R.id.create_date);
+            creatime.setText(new StringBuilder().append(mDay).append(".")
+                    .append(mMonth).append(".").append(mYear));
+        }
+
     }
 
     private String checkAd(Date date, String title, String description) {

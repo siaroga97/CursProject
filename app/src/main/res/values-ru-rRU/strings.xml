@@ -9,4 +9,10 @@
     <string name="description">Описание</string>
     <string name="time">Время</string>
     <string name="date">Дата</string>
+    <string name="incorrect_input">Неправильные данные</string>
+    <string name="lists_updated">Список изменён</string>
+    <string name="ad_created">Заметка добавлена</string>
+    <string name="ad_created_callback">заметка создана</string>
+    <string name="input_date">введите дату</string>
+    <string name="input_time">введите время</string>
 </resources>

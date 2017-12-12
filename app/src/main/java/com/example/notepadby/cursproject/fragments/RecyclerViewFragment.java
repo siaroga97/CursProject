@@ -55,7 +55,9 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void changeData() {
-        mAdapter.notifyDataSetChanged();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     class LoadContent extends AsyncTask<Void, Void, Void> {
@@ -75,10 +77,12 @@ public class RecyclerViewFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             try {
+             //   assert mAdapter != null;
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setHasFixedSize(true);
                 mRecyclerView.setLayoutManager(mLayoutManager);
             } catch (Exception ex) {
+               // Log.e(Constants.APP_LOGS, "WE FUCKED UP!");
                 ex.printStackTrace();
             }
         }
