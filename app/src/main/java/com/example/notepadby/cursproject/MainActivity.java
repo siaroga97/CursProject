@@ -24,20 +24,21 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private FragmentManager mFragmentManager;
+   //
+    private EventDbHelper eventDbHelper;
 
     public List<String> tabTitles;
     public List<RecyclerViewFragment> fragments;
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode){
+        switch (resultCode) {
             case Constants.REQUEST_CODE_LIST_UPDATED:
                 Log.i(Constants.APP_LOGS, getString(R.string.ad_created_callback));
                 ListOperations.updateLists();
-                for(RecyclerViewFragment fragment: fragments){
+                for (RecyclerViewFragment fragment : fragments) {
                     fragment.changeData();
                 }
         }
@@ -47,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //
+        eventDbHelper = new EventDbHelper(this);
+        //
 
-        ListOperations.addTestElements();
+        ListOperations.addTestElements(eventDbHelper);
         ListOperations.updateLists();
 
         fragments = new ArrayList<>();

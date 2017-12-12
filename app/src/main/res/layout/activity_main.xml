@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.notepadby.cursproject.MainActivity">
 
     <RelativeLayout
@@ -12,21 +12,20 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#877df5"
             app:tabGravity="fill"
             app:tabMode="scrollable"
-            android:background="#877df5"
-            app:tabTextColor="#000000"
             app:tabSelectedTextColor="#00ffd9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:tabTextColor="#000000" />
 
         <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tab_layout"
-            android:background="#ffffff"
-            android:id="@+id/view_pager"
-            />
+            android:background="#ffffff" />
     </RelativeLayout>
 
 </RelativeLayout>

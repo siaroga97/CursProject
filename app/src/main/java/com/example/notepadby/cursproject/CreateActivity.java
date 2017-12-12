@@ -1,7 +1,8 @@
 package com.example.notepadby.cursproject;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
+
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -22,16 +23,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class CreateActivity extends AppCompatActivity implements TimePickerFragment.TimePickedListener,DatePickerFragment.DatePickedListener{
+public class CreateActivity extends AppCompatActivity implements TimePickerFragment.TimePickedListener, DatePickerFragment.DatePickedListener {
 
-    private Date addedDate;
+
     private String title;
     private String description;
-
+    private EventDbHelper eventDbHelper;
 
     private int mHour;
     private int mMinute;
-
     private int mYear;
     private int mMonth;
     private int mDay;
@@ -40,7 +40,7 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-
+        eventDbHelper=new EventDbHelper(this);
         TextView createDate = findViewById(R.id.create_date);
         TextView createTime = findViewById(R.id.create_time);
         EditText titleView = findViewById(R.id.create_title);
@@ -59,8 +59,19 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
         addButton.setOnClickListener(listener -> {
             title = titleView.getText().toString();
             description = descriptionView.getText().toString();
-            GregorianCalendar calendar=new GregorianCalendar(mYear-1,mMonth-1,mDay,mHour,mMinute);
+            GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth - 1, mDay, mHour, mMinute);
             String result = checkAd(calendar.getTime(), title, description);
+
+            SQLiteDatabase db = eventDbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(ShemeTable.EventEntity.COLUMN_TITLE, title);
+            values.put(ShemeTable.EventEntity.COLUMN_DESCRIPTION, description);
+            values.put(ShemeTable.EventEntity.COLUMN_DATE, calendar.getTimeInMillis());
+
+            long newRowId = db.insert(ShemeTable.EventEntity.TABLE_NAME, null, values);
+
+
             Toast.makeText(CreateActivity.this, result, Toast.LENGTH_SHORT)
                     .show();
             if (result.equals(getString(R.string.ad_created))) {
@@ -77,6 +88,7 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
 
         updateDisplay();
     }
+
     public void onDatePicked(Calendar date) {
         mYear = date.get(Calendar.YEAR);
         mMonth = date.get(Calendar.MONTH) + 1;
@@ -84,19 +96,21 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
 
         updateDisplay();
     }
+
     private static String pad(int c) {
         if (c >= 10)
             return String.valueOf(c);
         else
             return "0" + String.valueOf(c);
     }
+
     public void updateDisplay() {
-        if (mHour!=0 && mMinute != 0 ) {
+        if (mHour != 0 && mMinute != 0) {
             TextView createDate = findViewById(R.id.create_time);
             createDate.setText(new StringBuilder().append(pad(mHour)).append(":")
                     .append(pad(mMinute)));
         }
-        if (mDay!=0 && mMonth !=0 && mYear!=0) {
+        if (mDay != 0 && mMonth != 0 && mYear != 0) {
             TextView creatime = findViewById(R.id.create_date);
             creatime.setText(new StringBuilder().append(mDay).append(".")
                     .append(mMonth).append(".").append(mYear));

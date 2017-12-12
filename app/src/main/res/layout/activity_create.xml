@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.notepadby.cursproject.CreateActivity">
 
@@ -15,6 +15,7 @@
         android:gravity="center"
         android:text="@string/input_date"
         android:textSize="22sp" />
+
     <TextView
         android:id="@+id/create_time"
         android:layout_width="match_parent"
@@ -61,6 +62,6 @@
         android:layout_height="54dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        app:backgroundTint="@color/colorPrimary"
-        android:src="@android:drawable/ic_input_add" />
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/colorPrimary" />
 </LinearLayout>
