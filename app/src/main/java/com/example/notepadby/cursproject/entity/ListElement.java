@@ -13,7 +13,6 @@ public class ListElement implements Comparable {
     private Date date;
 
     public ListElement(){
-
     }
     public int getId() {
         return id;
