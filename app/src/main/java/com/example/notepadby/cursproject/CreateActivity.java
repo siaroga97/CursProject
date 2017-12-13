@@ -40,7 +40,7 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        eventDbHelper=new EventDbHelper(this);
+        eventDbHelper = new EventDbHelper(this);
         TextView createDate = findViewById(R.id.create_date);
         TextView createTime = findViewById(R.id.create_time);
         EditText titleView = findViewById(R.id.create_title);
@@ -61,15 +61,6 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
             description = descriptionView.getText().toString();
             GregorianCalendar calendar = new GregorianCalendar(mYear, mMonth - 1, mDay, mHour, mMinute);
             String result = checkAd(calendar.getTime(), title, description);
-
-            SQLiteDatabase db = eventDbHelper.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-            values.put(ShemeTable.EventEntity.COLUMN_TITLE, title);
-            values.put(ShemeTable.EventEntity.COLUMN_DESCRIPTION, description);
-            values.put(ShemeTable.EventEntity.COLUMN_DATE, calendar.getTimeInMillis());
-
-            long newRowId = db.insert(ShemeTable.EventEntity.TABLE_NAME, null, values);
 
 
             Toast.makeText(CreateActivity.this, result, Toast.LENGTH_SHORT)
@@ -113,7 +104,6 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
             creatime.setText(new StringBuilder().append(mDay).append(".")
                     .append(mMonth).append(".").append(mYear));
         }
-
     }
 
     private String checkAd(Date date, String title, String description) {
@@ -125,6 +115,13 @@ public class CreateActivity extends AppCompatActivity implements TimePickerFragm
     }
 
     private void createAd(List<ListElement> list, Date date, String title, String description) {
-        ListOperations.insertElement(new ListElement(list.size()+1, title, description, date));
+        SQLiteDatabase db = eventDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ShemeTable.EventEntity.COLUMN_TITLE, title);
+        values.put(ShemeTable.EventEntity.COLUMN_DESCRIPTION, description);
+        values.put(ShemeTable.EventEntity.COLUMN_DATE, date.getTime());
+        long newRowId = db.insert(ShemeTable.EventEntity.TABLE_NAME, null, values);
+        ListOperations.insertElement(new ListElement(list.size() + 1, title, description, date));
     }
 }

@@ -35,7 +35,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final  ListElement element = elements.get(position);
 
         ItemViewHolder viewHolder =  (ItemViewHolder) holder;
-
         View itemView = viewHolder.itemView;
         TextView title = viewHolder.title;
         TextView date = viewHolder.date;

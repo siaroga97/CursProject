@@ -15,6 +15,8 @@ public interface Constants {
 
     String APP_LOGS = "COM.EXAMPLE.NOTEPADBY";
     String INTENT_ID = "INTENT_ID";
+    String KEY = "KEY";
+    String PREFS = "PREFS";
 
     int REQUEST_CODE_LIST_UPDATED = 402;
     Long ONE_DAY_MILLIS = 1000 * 3600 * 24L;

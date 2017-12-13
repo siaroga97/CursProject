@@ -1,6 +1,7 @@
 package com.example.notepadby.cursproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         eventDbHelper = new EventDbHelper(this);
+
+        SharedPreferences sp = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
+        int theMostImportantNumber = sp.getInt(Constants.KEY, 0);
 
         ListOperations.addTestElements(eventDbHelper);
         ListOperations.updateLists();

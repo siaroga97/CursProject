@@ -42,7 +42,6 @@ public class TimePickerFragment extends DialogFragment implements
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
-
         mListener.onTimePicked(calendar);
     }
 
